@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-describe "NrelFuelStations" do
+describe "Nrelstation" do
   context ".all_stations" do
     it "returns all stations by zip" do
+      zip = '80203'
       VCR.use_cassette("NrelStation.all_stations") do
-        stations = NrelStation.all_stations(ENV['api_key'])
+        stations = NrelStation.all_stations(ENV['api_key'], zip)
         station = stations.first
 
         expect(stations).to be_an(Array)
