@@ -7,9 +7,12 @@ describe "NrelService" do
 
       VCR.use_cassette("#altstations") do
         stations_by_zip = NrelService.new(ENV["api_key"]).stations_by_zip(zip)
-        station = station.first
+        station = stations_by_zip.first
 
-        expect(stations).to be_an(Array)
-        expect(station).to have_key(:name)
+        require "pry"; binding.pry
+        expect(stations_by_zip).to be_an(Array)
+        expect(station).to have_key(:fuel_type_code)
       end
     end
+  end
+end
