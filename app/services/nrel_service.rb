@@ -13,6 +13,7 @@ class NrelService
 
   def stations_by_zip(zip)
     response = conn.get "/api/alt-fuel-stations/v1/nearest.json?location=#{zip}"
-    JSON.parse(response.body, symbolize_names: true)
+    raw = JSON.parse(response.body, symbolize_names: true)
+    answer = raw[:fuel_stations]
   end
 end
