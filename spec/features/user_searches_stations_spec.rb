@@ -9,7 +9,7 @@ describe "user visits root page" do
       click_on 'Locate'
 
       expect(current_path).to eq('/search')
-      expect(current_url).should have_content("80203")
+      expect(current_url).to have_content("80203")
     end
   end
 end
