@@ -10,7 +10,8 @@ class NrelStation
   end
 
   def self.all_stations(api_key, zip)
-    NrelService.new(api_key).stations_by_zip(zip).map do |raw_station|
+    stations = NrelService.new(api_key).stations_by_zip(zip).find_all {|s| s[:fuel_type_code] == "ELEC" || s[:fuel_type_code] == "LPG" }
+    stations.map do |station|
       NrelStation.new(raw_station)
     end
   end
